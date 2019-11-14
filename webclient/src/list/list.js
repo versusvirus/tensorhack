@@ -1,8 +1,12 @@
 import React from 'react';
 import { throwStatement } from '@babel/types';
 
+let host = 'https://tensorhack.herokuapp.com';
+host = 'http://usd-volockoy1:5000';
+
+
 function getList() {
-  return fetch('https://tensorhack.herokuapp.com/notes/', {
+  return fetch(host + '/notes/', {
       method: 'GET',
       headers: {
           Accept: 'application/json',
@@ -57,16 +61,15 @@ class TodoList extends React.Component {
         user: 'user1',
         date: 'data'
       }
-        fetch('https://tensorhack.herokuapp.com/notes/', {
+        fetch(host + '/notes/', {
           method: 'POST',
           headers: {
             'Accept': '*/*',
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(good)
         }).then(response => {
-          return response.json().then(good_id => {
-            good._id = good_id;
+          return response.json().then(good => {
             this.setState({
               goods: [...this.state.goods, good],
               newValue: ''
@@ -76,7 +79,7 @@ class TodoList extends React.Component {
         })
       }
     onRemoveHandler(_id){
-      fetch('https://tensorhack.herokuapp.com/notes/'+_id, {
+      fetch(host + '/notes/'+_id, {
         method: 'DELETE',
         headers: {
           'Accept': 'application/json',
