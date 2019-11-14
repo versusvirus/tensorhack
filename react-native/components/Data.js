@@ -8,10 +8,10 @@ function generateData(count) {
     }
     return result;
 }
-const data = generateData(20);
+const data = generateData(0);
 
 function getList() {
-    return fetch('http://usd-volockoy1:8000/notes/', {
+    return fetch('https://tensorhack.herokuapp.com/notes', {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -19,6 +19,8 @@ function getList() {
         }
     }).then(result => {
         return result.json();    
+    }).catch(error => {
+        return data;
     })
 }
 
