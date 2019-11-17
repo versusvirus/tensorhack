@@ -13,6 +13,20 @@ const dataSource = {
         const newList = [item, ...this.list];
         this.list = newList;
         return this.list;
+    },
+
+    deleteItem: (id) => {
+        const newList = [];
+
+        for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i]._id != id) {
+                newList.push(this.list[i]);
+            }
+        }
+
+        this.list = newList;
+
+        return newList;
     }
 }
 function generateData(count) {

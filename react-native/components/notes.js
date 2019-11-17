@@ -1,5 +1,6 @@
 import React from 'react';
-import { FlatList, Text, View, Button, TextInput, TouchableHighlight } from 'react-native';
+import { Text, View, Button, TextInput, TouchableHighlight } from 'react-native';
+import { SwipeListView } from 'react-native-swipe-list-view';
 import { dataSource } from './Data';
 import { commonStyles, listHoverColor, primaryColor, secondaryColor, successColor } from './commonStyles';
 
@@ -60,6 +61,13 @@ class Notes extends React.Component {
         })
     }
 
+    deleteBtnHandler = (rowMap, id) => {
+        const newList = dataSource.deleteItem(id);
+        this.setState({
+            data: newList
+        })
+    }
+
     itemHandler = (note) => {
         const navigation = this.props.navigation;
         navigation.navigate('Purchases', {note})
@@ -70,6 +78,21 @@ class Notes extends React.Component {
             <TouchableHighlight underlayColor={listHoverColor} onPress={() => this.itemHandler(item._id)}>
                 <Text style={commonStyles.listItem}>{item.name}</Text>
             </TouchableHighlight>
+        )
+    }
+
+    swipeRender = (data, rowMap) => {
+        return (
+            <View style={commonStyles.swipeLayout}>
+                <TouchableHighlight
+                    style={commonStyles.swipeDeleteBtn}
+                    onPress={() => this.deleteBtnHandler(rowMap, data.item._id) }
+                >
+                    <Text style={commonStyles.swipeDeleteBtnText}>
+                        Delete
+                    </Text>
+                </TouchableHighlight>
+            </View>
         )
     }
 
@@ -89,8 +112,11 @@ class Notes extends React.Component {
                         <Button color={secondaryColor} title="Cancel" onPress={this.cancelBtnHandler}/>
                     </View>
                 }
-                <FlatList data={this.state.data} keyExtractor={item => item._id}
-                    renderItem={this.itemRender} />
+                <SwipeListView data={this.state.data} keyExtractor={item => item._id}
+                    renderItem={this.itemRender}
+                    renderHiddenItem={ this.swipeRender }
+                    rightOpenValue={-75} 
+                />
                 <View style={commonStyles.toolbar}>
                     <Button color={primaryColor} title="Add note" onPress={this.addBtnHandler}/>    
                     <Button color={secondaryColor} title="Refresh" onPress={this.refreshBtnHandler}/>    
