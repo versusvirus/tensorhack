@@ -1,12 +1,14 @@
+const host = 'https://tensorhack.herokuapp.com';
 /**
  * Функция вызывает GET метод, возвращает обещание,
  * обещание вовзвращает готовые данные в случае успеха, объект ошибки в случае неудачи
  * @param serviceMethod {String}
  * @param query
+ * @param param
  * @returns {Promise<any>}
  */
-export async function get(serviceMethod: string, query?: any = {}, param?: string) {
-    const fetchResponse = await fetch(`/${serviceMethod}${param ? `/${param}` : ''}${query ? `?${getQueryString(query)}` : ''}`);
+export async function get(serviceMethod, query, param) {
+    const fetchResponse = await fetch(`${host}/${serviceMethod}${param ? `/${param}` : ''}${query ? `?${getQueryString(query)}` : ''}`);
 
     if (fetchResponse.ok) {
         return await fetchResponse.json();
@@ -14,7 +16,7 @@ export async function get(serviceMethod: string, query?: any = {}, param?: strin
         throw new Error(`Service did't return response`);
     }
 
-    function getQueryString(queryObj: any): string {
+    function getQueryString() {
         return Object.keys(queryObj).map((key) => `${key}=${JSON.stringify(queryObj[key])}`).join('&');
     }
 }
@@ -25,9 +27,9 @@ export async function get(serviceMethod: string, query?: any = {}, param?: strin
  * @param body
  * @returns {Promise<any>}
  */
-export async function post(serviceMethod: string, body: any) {
+export async function post(serviceMethod, body) {
     try {
-        const fetchResponse = await fetch(`/${serviceMethod}`, {
+        const fetchResponse = await fetch(`${host}/${serviceMethod}`, {
             body: JSON.stringify(body),
             headers: {
                 'Accept': 'application/json',
@@ -52,9 +54,9 @@ export async function post(serviceMethod: string, body: any) {
  * @param body
  * @returns {Promise<any>}
  */
-export async function deleteCall(serviceMethod: string, body: any, param: string) {
+export async function deleteCall(serviceMethod, body, param) {
     try {
-        const fetchResponse = await fetch(`/${serviceMethod}${param ? `/${param}` : ''}`, {
+        const fetchResponse = await fetch(`${host}/${serviceMethod}${param ? `/${param}` : ''}`, {
             body: JSON.stringify(body),
             headers: {
                 'Accept': 'application/json',
@@ -64,7 +66,7 @@ export async function deleteCall(serviceMethod: string, body: any, param: string
         });
 
         if (fetchResponse.ok) {
-            return await fetchResponse.json();
+            return true;
         } else {
             throw new Error(`Service did't return response`);
         }
@@ -73,9 +75,9 @@ export async function deleteCall(serviceMethod: string, body: any, param: string
     }
 }
 
-export async function put(serviceMethod: string, body: any, param: string) {
+export async function put(serviceMethod, body, param) {
     try {
-        const fetchResponse = await fetch(`/${serviceMethod}${param ? `/${param}` : ''}`, {
+        const fetchResponse = await fetch(`${host}/${serviceMethod}${param ? `/${param}` : ''}`, {
             body: JSON.stringify(body),
             headers: {
                 'Accept': 'application/json',

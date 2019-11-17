@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Button, TextInput, TouchableHighlight } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { dataSource } from './Data';
+import { notes } from 'tensorhackfetchapi';
 import { commonStyles, listHoverColor, primaryColor, secondaryColor, successColor } from './commonStyles';
 
 class Notes extends React.Component {
@@ -20,7 +21,7 @@ class Notes extends React.Component {
     
     async refresh() {
         this.setState({
-            data: await dataSource.getList()
+            data: await notes.getNotes()
         });
         return;
     }
