@@ -1,3 +1,20 @@
+const dataSource = {
+    list: null,
+
+    getList: () => {
+        if (!this.list) {
+            this.list = generateData(7);
+        }
+        return this.list;
+    },
+
+    addItem: (item) => {
+        item._id = Math.random().toString(12);
+        const newList = [item, ...this.list];
+        this.list = newList;
+        return this.list;
+    }
+}
 function generateData(count) {
     let result = [];
     for (let i = 1; i < count + 1; i++) {
@@ -8,9 +25,9 @@ function generateData(count) {
     }
     return result;
 }
-const data = generateData(0);
 
-function getList() {
+export {dataSource};
+/*function getList() {
     return fetch('https://tensorhack.herokuapp.com/notes', {
         method: 'GET',
         headers: {
@@ -22,6 +39,4 @@ function getList() {
     }).catch(error => {
         return data;
     })
-}
-
-export { data, getList }
+}*/
