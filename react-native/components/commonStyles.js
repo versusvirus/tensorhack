@@ -16,6 +16,7 @@ const commonStyles = StyleSheet.create({
     },
     listItem: {
         paddingVertical: 12,
+        backgroundColor,
         paddingHorizontal: 16,
         fontSize: 18,
         borderBottomWidth: 1,
@@ -39,6 +40,26 @@ const commonStyles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 16,
         fontSize: 18,
+    },
+    swipeLayout: {
+        alignItems: 'center',
+        backgroundColor,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+    },
+    swipeDeleteBtn: {
+        alignItems: 'center',
+        bottom: 0,
+        justifyContent: 'center',
+        position: 'absolute',
+        top: 0,
+        width: 75,
+        right: 0,
+        backgroundColor: dangerColor
+    },
+    swipeDeleteBtnText: {
+        color: '#fff',
     }
 });
 
