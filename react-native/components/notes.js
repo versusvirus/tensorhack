@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, Button, TextInput, TouchableHighlight } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { dataSource } from './Data';
 import { notes } from 'tensorhackfetchapi';
 import { commonStyles, listHoverColor, primaryColor, secondaryColor, successColor } from './commonStyles';
 
@@ -45,13 +44,19 @@ class Notes extends React.Component {
 
     addConfirmBtnHandler = () => {
         const newItem = {
-            name: this.state.addText
+            name: this.state.addText,
+            date: new Date(),
+            user: ''
         };
-        const newList = dataSource.addItem(newItem);
-        this.setState({
-            addText: '',
-            isAdd: false,
-            data: newList
+
+        let changedData = this.state.data;
+        notes.createNote(newItem).then((item) => {
+            changedData = [item, ...changedData];
+            this.setState({
+                addText: '',
+                isAdd: false,
+                data: changedData
+            })
         })
     }
 
@@ -63,9 +68,12 @@ class Notes extends React.Component {
     }
 
     deleteBtnHandler = (rowMap, id) => {
-        const newList = dataSource.deleteItem(id);
-        this.setState({
-            data: newList
+        let changedData = this.state.data;
+        notes.deleteNote(id).then(() => {
+            changedData = changedData.filter(item => item._id !== id);
+            this.setState({
+                data: changedData
+            })
         })
     }
 
