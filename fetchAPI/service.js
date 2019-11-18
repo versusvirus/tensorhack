@@ -16,7 +16,7 @@ export async function get(serviceMethod, query, param) {
         throw new Error(`Service did't return response`);
     }
 
-    function getQueryString() {
+    function getQueryString(queryObj) {
         return Object.keys(queryObj).map((key) => `${key}=${JSON.stringify(queryObj[key])}`).join('&');
     }
 }
