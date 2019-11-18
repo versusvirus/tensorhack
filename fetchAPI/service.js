@@ -57,7 +57,6 @@ export async function post(serviceMethod, body) {
 export async function deleteCall(serviceMethod, body, param) {
     try {
         const fetchResponse = await fetch(`${host}/${serviceMethod}${param ? `/${param}` : ''}`, {
-            body: JSON.stringify(body),
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
