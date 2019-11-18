@@ -17,7 +17,7 @@ export async function get(serviceMethod, query, param) {
     }
 
     function getQueryString(queryObj) {
-        return Object.keys(queryObj).map((key) => `${key}=${JSON.stringify(queryObj[key])}`).join('&');
+        return Object.keys(queryObj).map((key) => `${key}=${queryObj[key].toString()}`).join('&');
     }
 }
 
