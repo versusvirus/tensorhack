@@ -6,8 +6,8 @@ import { notes } from 'tensorhackfetchapi';
 import { commonStyles, listHoverColor, primaryColor, secondaryColor, successColor } from './commonStyles';
 
 class Notes extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: [],
             isAdd: false,
@@ -69,14 +69,14 @@ class Notes extends React.Component {
         })
     }
 
-    itemHandler = (note) => {
+    itemHandler = (note, name) => {
         const navigation = this.props.navigation;
-        navigation.navigate('Purchases', {note})
+        navigation.navigate('Purchases', {note, noteName: name})
     }
     
     itemRender = ({item}) => {
         return (
-            <TouchableHighlight underlayColor={listHoverColor} onPress={() => this.itemHandler(item._id)}>
+            <TouchableHighlight underlayColor={listHoverColor} onPress={() => this.itemHandler(item._id, item.name)}>
                 <Text style={commonStyles.listItem}>{item.name}</Text>
             </TouchableHighlight>
         )
@@ -99,7 +99,7 @@ class Notes extends React.Component {
 
     render() {
         return (       
-            <View style={commonStyles.notes}>
+            <View style={commonStyles.listWrapper}>
                 {this.state.isAdd &&
                     <View style={commonStyles.addForm}>
                         <TextInput

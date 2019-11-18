@@ -7,9 +7,17 @@ const secondaryColor = '#587ab0';
 const successColor = '#069922';
 const dangerColor = '#d04d4d';
 const listHoverColor = '#f0f5fb';
+const fontSizeText = 18;
+const fontSizeHeading = 24;
+const textPaddingHorizontal = 16;
 
 const commonStyles = StyleSheet.create({
-    notes: {
+    heading: {
+        color: secondaryColor,
+        fontSize: fontSizeHeading,
+        paddingHorizontal: textPaddingHorizontal
+    },
+    listWrapper: {
         flex: 1,
         backgroundColor,
         justifyContent: 'center',
@@ -17,8 +25,8 @@ const commonStyles = StyleSheet.create({
     listItem: {
         paddingVertical: 12,
         backgroundColor,
-        paddingHorizontal: 16,
-        fontSize: 18,
+        paddingHorizontal: textPaddingHorizontal,
+        fontSize: fontSizeText,
         borderBottomWidth: 1,
         borderBottomColor: borderColor
     },
@@ -38,8 +46,8 @@ const commonStyles = StyleSheet.create({
     },
     textInput: {
         paddingVertical: 12,
-        paddingHorizontal: 16,
-        fontSize: 18,
+        paddingHorizontal: textPaddingHorizontal,
+        fontSize: fontSizeText,
     },
     swipeLayout: {
         alignItems: 'center',
