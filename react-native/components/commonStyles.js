@@ -17,10 +17,19 @@ const commonStyles = StyleSheet.create({
         fontSize: fontSizeHeading,
         paddingHorizontal: textPaddingHorizontal
     },
-    listWrapper: {
+    page: {
         flex: 1,
         backgroundColor,
         justifyContent: 'center',
+    },
+    header: {
+        flex: 1
+    },
+    content: {
+        flex: 8
+    },
+    footer: {
+        flex: 1
     },
     listItem: {
         paddingVertical: 12,
@@ -31,18 +40,17 @@ const commonStyles = StyleSheet.create({
         borderBottomColor: borderColor
     },
     toolbar: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
         padding: 12
     },
-    addForm: {
-        flex: 1,
+    inputForm: {
+        paddingVertical: 0,
+        height: 40,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 0,
-        height: 40
+        flex: 1
     },
     textInput: {
         paddingVertical: 12,

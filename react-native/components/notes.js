@@ -46,11 +46,15 @@ class Notes extends React.Component {
         const newItem = {
             name: this.state.addText,
             date: new Date(),
-            user: ''
+            user: 1
         };
 
         let changedData = this.state.data;
-        notes.createNote(newItem).then((item) => {
+        notes.createNote(newItem).then((_id) => {
+            const item = {
+                _id,
+                name: this.state.addText
+            }
             changedData = [item, ...changedData];
             this.setState({
                 addText: '',
@@ -107,28 +111,34 @@ class Notes extends React.Component {
 
     render() {
         return (       
-            <View style={commonStyles.listWrapper}>
+            <View style={commonStyles.page}>
                 {this.state.isAdd &&
-                    <View style={commonStyles.addForm}>
-                        <TextInput
-                            autoFocus={true}
-                            style={commonStyles.textInput}
-                            placeholder="Note title"
-                            onChangeText={this.addTextInput}
-                            value={this.state.addText}
-                        />
-                        <Button color={successColor} title="OK" onPress={this.addConfirmBtnHandler}/>
-                        <Button color={secondaryColor} title="Cancel" onPress={this.cancelBtnHandler}/>
+                    <View style={commonStyles.header}>
+                        <View style={commonStyles.inputForm}>
+                            <TextInput
+                                autoFocus={true}
+                                style={commonStyles.textInput}
+                                placeholder="Note title"
+                                onChangeText={this.addTextInput}
+                                value={this.state.addText}
+                            />
+                            <Button color={successColor} title="OK" onPress={this.addConfirmBtnHandler}/>
+                            <Button color={secondaryColor} title="Cancel" onPress={this.cancelBtnHandler}/>
+                        </View>
                     </View>
                 }
-                <SwipeListView data={this.state.data} keyExtractor={item => item._id}
-                    renderItem={this.itemRender}
-                    renderHiddenItem={ this.swipeRender }
-                    rightOpenValue={-75} 
-                />
-                <View style={commonStyles.toolbar}>
-                    <Button color={primaryColor} title="Add note" onPress={this.addBtnHandler}/>    
-                    <Button color={secondaryColor} title="Refresh" onPress={this.refreshBtnHandler}/>    
+                <View style={commonStyles.content}>
+                    <SwipeListView data={this.state.data} keyExtractor={item => item._id}
+                        renderItem={this.itemRender}
+                        renderHiddenItem={ this.swipeRender }
+                        rightOpenValue={-75} 
+                    />
+                </View>
+                <View style={commonStyles.footer}>
+                    <View style={commonStyles.toolbar}>
+                        <Button color={primaryColor} title="Add note" onPress={this.addBtnHandler}/>    
+                        <Button color={secondaryColor} title="Refresh" onPress={this.refreshBtnHandler}/>    
+                    </View>
                 </View>
             </View>
             
