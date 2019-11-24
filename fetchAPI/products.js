@@ -6,6 +6,6 @@ export default class ProductsAPI {
     }
 
     static async getProducts(name) {
-        return await get('products', {name});
+        return name ? await get('products', {name}) : await get('products');
     }
 }

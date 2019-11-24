@@ -1,15 +1,15 @@
 import {get, post, deleteCall} from './service';
 
 export default class PurchasesAPI {
-    static async getPurchase(note) {
-        return await get('purchases', {note});
+    static async getPurchase(note_id) {
+        return await get('purchases', {note_id});
     }
 
-    static async createPurchase(note, text) {
-        return await post('purchases', {note, text});
+    static async createPurchase(note_id, product_id) {
+        return await post('purchases', {note_id, product_id});
     }
 
-    static async deletePurchase(note) {
-        return await deleteCall('purchases', null, note);
+    static async deletePurchase(id) {
+        return await deleteCall('purchases', null, id);
     }
 }
