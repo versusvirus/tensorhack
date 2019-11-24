@@ -12,6 +12,10 @@ class AddPurchase extends React.Component {
         };
     }
     
+    async componentWillMount() {
+        return await this.refresh();
+    }
+
     async refresh(name) {
         this.setState({
             data: await products.getProducts(name)
@@ -29,9 +33,9 @@ class AddPurchase extends React.Component {
     itemHandler = (productId) => {
         const noteId = this.props.navigation.getParam('note');
         purchases.createPurchase(noteId, productId).then((result) => {
-            this.props.navigation.navigate();
+            this.props.navigation.goBack();
         }).catch((err) => {
-            alert('Error adding product');
+            alert('Error creating purchase' + err);
         })
     }
 

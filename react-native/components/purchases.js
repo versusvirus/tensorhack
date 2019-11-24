@@ -12,12 +12,15 @@ class Purchases extends React.Component {
         };
     }
 
-    async componentWillMount() {
-        return await this.refresh();
+    componentWillMount() {
+        this.props.navigation.addListener('didFocus',
+            () => {
+                this.refresh();
+            }
+        );
     }
-    
+
     async refresh() {
-        alert (await JSON.stringify(purchases.getPurchase(this.state.note)));
         this.setState({
             data: await purchases.getPurchase(this.state.note)
         });
@@ -35,15 +38,25 @@ class Purchases extends React.Component {
         return;
     }
 
-    itemHandler = (purchase) => {
-        alert(purchase);
+
+    groupRender = ({item}) => {
+        return (
+            <>
+                <View>
+                    <Text style={commonStyles.listItem}>{item.name}</Text>
+                </View>
+                <FlatList data={item.products} keyExtractor={item => item.name}
+                    renderItem={this.itemRender}
+                />
+            </>
+        )
     }
 
     itemRender = ({item}) => {
         return (
-            <TouchableHighlight underlayColor={listHoverColor} onPress={() => this.itemHandler(item._id)}>
-                <Text style={commonStyles.listItem}>{item.text}</Text>
-            </TouchableHighlight>
+            <View style={commonStyles.hierarchyPadding}>
+                <Text style={commonStyles.listItem}>{item.name}</Text>
+            </View>
         )
     }
 
@@ -56,10 +69,8 @@ class Purchases extends React.Component {
                 </View>
             </View>
             <View style={commonStyles.content}>
-                <FlatList data={this.state.data} keyExtractor={item => item._id}
-                    renderItem={this.itemRender}
-                    renderHiddenItem={ this.swipeRender }
-                    rightOpenValue={-75} 
+                <FlatList data={this.state.data} keyExtractor={item => item.name}
+                    renderItem={this.groupRender}
                 />
             </View>
             <View style={commonStyles.footer}>

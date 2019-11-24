@@ -89,7 +89,7 @@ class Notes extends React.Component {
     itemRender = ({item}) => {
         return (
             <TouchableHighlight underlayColor={listHoverColor} onPress={() => this.itemHandler(item._id, item.name)}>
-                <Text style={commonStyles.listItem}>{item.name}</Text>
+                <Text style={[commonStyles.listItem, commonStyles.listSwipeItem]}>{item.name}</Text>
             </TouchableHighlight>
         )
     }

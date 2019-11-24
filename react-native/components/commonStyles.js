@@ -32,12 +32,17 @@ const commonStyles = StyleSheet.create({
         flex: 1
     },
     listItem: {
-        paddingVertical: 12,
-        backgroundColor,
+        paddingVertical: 12,        
         paddingHorizontal: textPaddingHorizontal,
         fontSize: fontSizeText,
         borderBottomWidth: 1,
         borderBottomColor: borderColor
+    },
+    listSwipeItem: {
+        backgroundColor,
+    },
+    hierarchyPadding: {
+        paddingLeft: 32
     },
     toolbar: {
         flexDirection: 'row',
