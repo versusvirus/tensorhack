@@ -7,39 +7,60 @@ const secondaryColor = '#587ab0';
 const successColor = '#069922';
 const dangerColor = '#d04d4d';
 const listHoverColor = '#f0f5fb';
+const fontSizeText = 18;
+const fontSizeHeading = 24;
+const textPaddingHorizontal = 16;
 
 const commonStyles = StyleSheet.create({
-    notes: {
+    heading: {
+        color: secondaryColor,
+        fontSize: fontSizeHeading,
+        paddingHorizontal: textPaddingHorizontal
+    },
+    page: {
         flex: 1,
         backgroundColor,
         justifyContent: 'center',
     },
+    header: {
+        flex: 1
+    },
+    content: {
+        flex: 8
+    },
+    footer: {
+        flex: 1
+    },
     listItem: {
-        paddingVertical: 12,
-        backgroundColor,
-        paddingHorizontal: 16,
-        fontSize: 18,
+        paddingVertical: 12,        
+        paddingHorizontal: textPaddingHorizontal,
+        fontSize: fontSizeText,
         borderBottomWidth: 1,
         borderBottomColor: borderColor
     },
+    listSwipeItem: {
+        backgroundColor,
+    },
+    hierarchyPadding: {
+        paddingLeft: 32
+    },
     toolbar: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
         padding: 12
     },
-    addForm: {
-        flex: 1,
+    inputForm: {
+        paddingVertical: 0,
+        height: 40,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 0,
-        height: 40
+        flex: 1
     },
     textInput: {
         paddingVertical: 12,
-        paddingHorizontal: 16,
-        fontSize: 18,
+        paddingHorizontal: textPaddingHorizontal,
+        fontSize: fontSizeText,
     },
     swipeLayout: {
         alignItems: 'center',

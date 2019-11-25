@@ -5,8 +5,8 @@ import { notes } from 'tensorhackfetchapi';
 import { commonStyles, listHoverColor, primaryColor, secondaryColor, successColor } from './commonStyles';
 
 class Notes extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: [],
             isAdd: false,
@@ -46,11 +46,15 @@ class Notes extends React.Component {
         const newItem = {
             name: this.state.addText,
             date: new Date(),
-            user: ''
+            user: 1
         };
 
         let changedData = this.state.data;
-        notes.createNote(newItem).then((item) => {
+        notes.createNote(newItem).then((_id) => {
+            const item = {
+                _id,
+                name: this.state.addText
+            }
             changedData = [item, ...changedData];
             this.setState({
                 addText: '',
@@ -77,15 +81,15 @@ class Notes extends React.Component {
         })
     }
 
-    itemHandler = (note) => {
+    itemHandler = (note, name) => {
         const navigation = this.props.navigation;
-        navigation.navigate('Purchases', {note})
+        navigation.navigate('Purchases', {note, noteName: name})
     }
     
     itemRender = ({item}) => {
         return (
-            <TouchableHighlight underlayColor={listHoverColor} onPress={() => this.itemHandler(item._id)}>
-                <Text style={commonStyles.listItem}>{item.name}</Text>
+            <TouchableHighlight underlayColor={listHoverColor} onPress={() => this.itemHandler(item._id, item.name)}>
+                <Text style={[commonStyles.listItem, commonStyles.listSwipeItem]}>{item.name}</Text>
             </TouchableHighlight>
         )
     }
@@ -107,28 +111,34 @@ class Notes extends React.Component {
 
     render() {
         return (       
-            <View style={commonStyles.notes}>
+            <View style={commonStyles.page}>
                 {this.state.isAdd &&
-                    <View style={commonStyles.addForm}>
-                        <TextInput
-                            autoFocus={true}
-                            style={commonStyles.textInput}
-                            placeholder="Note title"
-                            onChangeText={this.addTextInput}
-                            value={this.state.addText}
-                        />
-                        <Button color={successColor} title="OK" onPress={this.addConfirmBtnHandler}/>
-                        <Button color={secondaryColor} title="Cancel" onPress={this.cancelBtnHandler}/>
+                    <View style={commonStyles.header}>
+                        <View style={commonStyles.inputForm}>
+                            <TextInput
+                                autoFocus={true}
+                                style={commonStyles.textInput}
+                                placeholder="Note title"
+                                onChangeText={this.addTextInput}
+                                value={this.state.addText}
+                            />
+                            <Button color={successColor} title="OK" onPress={this.addConfirmBtnHandler}/>
+                            <Button color={secondaryColor} title="Cancel" onPress={this.cancelBtnHandler}/>
+                        </View>
                     </View>
                 }
-                <SwipeListView data={this.state.data} keyExtractor={item => item._id}
-                    renderItem={this.itemRender}
-                    renderHiddenItem={ this.swipeRender }
-                    rightOpenValue={-75} 
-                />
-                <View style={commonStyles.toolbar}>
-                    <Button color={primaryColor} title="Add note" onPress={this.addBtnHandler}/>    
-                    <Button color={secondaryColor} title="Refresh" onPress={this.refreshBtnHandler}/>    
+                <View style={commonStyles.content}>
+                    <SwipeListView data={this.state.data} keyExtractor={item => item._id}
+                        renderItem={this.itemRender}
+                        renderHiddenItem={ this.swipeRender }
+                        rightOpenValue={-75} 
+                    />
+                </View>
+                <View style={commonStyles.footer}>
+                    <View style={commonStyles.toolbar}>
+                        <Button color={primaryColor} title="Add note" onPress={this.addBtnHandler}/>    
+                        <Button color={secondaryColor} title="Refresh" onPress={this.refreshBtnHandler}/>    
+                    </View>
                 </View>
             </View>
             
