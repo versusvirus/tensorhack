@@ -39,7 +39,11 @@ export async function post(serviceMethod, body) {
         });
 
         if (fetchResponse.ok) {
-            return await fetchResponse.json();
+            try {
+                return await fetchResponse.json();
+            } catch(err) {
+                return true;
+            }
         } else {
             throw new Error(`Service did't return response`);
         }
