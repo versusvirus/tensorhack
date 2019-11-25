@@ -35,7 +35,7 @@ class AddPurchase extends React.Component {
         purchases.createPurchase(noteId, productId).then((result) => {
             this.props.navigation.goBack();
         }).catch((err) => {
-            alert('Error creating purchase' + err);
+            //alert('Error creating purchase' + err);
         })
     }
 
