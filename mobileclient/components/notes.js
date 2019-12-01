@@ -112,6 +112,11 @@ class Notes extends React.Component {
     render() {
         return (       
             <View style={commonStyles.page}>
+                <View style={commonStyles.header}>
+                    <View style={commonStyles.toolbar}>
+                        <Button color={primaryColor} title="Добавить заметку" onPress={this.addBtnHandler}/>    
+                    </View>
+                </View>
                 {this.state.isAdd &&
                     <View style={commonStyles.header}>
                         <View style={commonStyles.inputForm}>
@@ -133,12 +138,6 @@ class Notes extends React.Component {
                         renderHiddenItem={ this.swipeRender }
                         rightOpenValue={-75} 
                     />
-                </View>
-                <View style={commonStyles.footer}>
-                    <View style={commonStyles.toolbar}>
-                        <Button color={primaryColor} title="Add note" onPress={this.addBtnHandler}/>    
-                        <Button color={secondaryColor} title="Refresh" onPress={this.refreshBtnHandler}/>    
-                    </View>
                 </View>
             </View>
             
