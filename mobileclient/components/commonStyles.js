@@ -8,8 +8,10 @@ const secondaryColor = '#587ab0';
 const successColor = '#069922';
 const dangerColor = '#d04d4d';
 const listHoverColor = '#f0f5fb';
+const unaccentedTextColor = '#999';
 const fontSizeText = 18;
 const fontSizeHeading = 24;
+const fontSizeUnnaccented = 14;
 const textPaddingHorizontal = 16;
 
 const commonStyles = StyleSheet.create({
@@ -83,6 +85,19 @@ const commonStyles = StyleSheet.create({
     },
     swipeDeleteBtnText: {
         color: '#fff',
+    },
+    characteristics: {
+        paddingHorizontal: textPaddingHorizontal
+    },
+    characteristicsHeading: {
+        fontSize: fontSizeUnnaccented,
+        color: unaccentedTextColor
+    },
+    characteristicsItem: {
+        paddingVertical: 18
+    },
+    characteristicsName: {
+        fontSize: fontSizeText
     }
 });
 
