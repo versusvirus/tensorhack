@@ -64,20 +64,14 @@ class Purchases extends React.Component {
       return (
         <View style={commonStyles.page}> 
             <View style={commonStyles.header}>
-                <View style={commonStyles.inputForm}>
-                    <Text style={commonStyles.heading}>{this.props.navigation.getParam('noteName')}</Text> 
+                <View style={commonStyles.toolbar}>
+                    <Button color={primaryColor} title="Добавить продукт" onPress={this.addBtnHandler}/>  
                 </View>
             </View>
             <View style={commonStyles.content}>
                 <FlatList data={this.state.data} keyExtractor={item => item.name}
                     renderItem={this.groupRender}
                 />
-            </View>
-            <View style={commonStyles.footer}>
-                <View style={commonStyles.toolbar}>
-                    <Button color={primaryColor} title="Add purchase" onPress={this.addBtnHandler}/>    
-                    <Button color={secondaryColor} title="Refresh" onPress={this.refreshBtnHandler}/>    
-                </View>
             </View>
         </View>
       );
