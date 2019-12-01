@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const backgroundColor = '#fff';
+const unaccentedBackgroundColor = '#f8f8f8';
 const borderColor = '#e4e4e4';
-const primaryColor = '#d94700';
+const primaryColor = '#000';
 const secondaryColor = '#587ab0';
 const successColor = '#069922';
 const dangerColor = '#d04d4d';
@@ -23,10 +24,11 @@ const commonStyles = StyleSheet.create({
         justifyContent: 'center',
     },
     header: {
-        flex: 1
+        flex: 1,
+        backgroundColor: unaccentedBackgroundColor
     },
     content: {
-        flex: 8
+        flex: 9
     },
     footer: {
         flex: 1
@@ -46,13 +48,13 @@ const commonStyles = StyleSheet.create({
     },
     toolbar: {
         flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
+        justifyContent: 'center',
+        alignItems: 'center',
         padding: 12
     },
     inputForm: {
         paddingVertical: 0,
-        height: 40,
+        height: 32,
         flexDirection: 'row',
         alignItems: 'center',
         flex: 1
