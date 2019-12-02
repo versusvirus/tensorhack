@@ -89,15 +89,56 @@ const commonStyles = StyleSheet.create({
     characteristics: {
         paddingHorizontal: textPaddingHorizontal
     },
-    characteristicsHeading: {
-        fontSize: fontSizeUnnaccented,
-        color: unaccentedTextColor
-    },
     characteristicsItem: {
         paddingVertical: 18
     },
     characteristicsName: {
         fontSize: fontSizeText
+    },
+    purchaseItem: {
+        display: 'flex',
+        flexDirection: 'row',
+        paddingLeft: 24,
+        marginBottom: 32
+    },
+    purchaseItemName: {
+        fontSize: fontSizeText
+    },
+    purchaseImage: {
+        width: 64,
+        height: 64,
+        backgroundColor: '#ccc'
+    },
+    purchaseDescription: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        paddingLeft: 12
+    },
+    purchaseCharacteristics: {
+        color: '#ccc',
+        fontSize: fontSizeText
+    },
+    purchasePrice: {
+        fontSize: 16,
+        marginRight: 12
+    },
+    purchaseStockPrice: {
+        fontSize: fontSizeUnnaccented,
+        color: dangerColor,
+        textDecorationLine: 'line-through',
+        marginRight: 24
+    },
+    purchaseCount: {
+        flexGrow: 1,
+        fontSize: fontSizeUnnaccented,
+        color: unaccentedTextColor,
+        textAlign: 'right'
+    },
+    purchaseInfo: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'baseline'
     }
 });
 

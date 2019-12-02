@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TextInput, FlatList, TouchableHighlight } from 'react-native';
-import { characteristics, categories } from 'tensorhackfetchapi';
-import { commonStyles, listHoverColor } from './commonStyles';
+import { View, Text, TextInput, FlatList, TouchableHighlight, Button } from 'react-native';
+import { characteristics, categories, purchases } from 'tensorhackfetchapi';
+import { commonStyles, listHoverColor, secondaryColor } from './commonStyles';
 
 class AddPurchase extends React.Component {
     constructor(props) {
@@ -47,12 +47,7 @@ class AddPurchase extends React.Component {
             searchText: name,
             catId,
             charsList
-        })
-        /*purchases.createPurchase(noteId, productId).then((result) => {
-            this.props.navigation.goBack();
-        }).catch((err) => {
-            alert('Error creating purchase' + err);
-        })*/
+        });
     }
 
     inputCharValueHandler = (value, item) => {
@@ -63,6 +58,24 @@ class AddPurchase extends React.Component {
         this.setState ({
             charsList: newCharsList
         })
+    }
+
+    addBtnHandler = () => {
+        const characteristics = this.state.charsList.map(item => ({
+            id: item._id,
+            value: item.value
+        }));
+        
+        purchases.createPurchase(
+            this.props.navigation.getParam('note'),
+            this.state.catId,
+            JSON.stringify(characteristics),
+            1
+        ).then(() => {
+            this.props.navigation.goBack();
+        }).catch(e => {
+            alert(e.toString());
+        });
     }
 
     catItemRender = ({item}) => {
@@ -97,7 +110,7 @@ class AddPurchase extends React.Component {
             content =
                 <View style={commonStyles.characteristics}>
                     <View>
-                        <Text style={commonStyles.characteristicsHeading}>Характеристики</Text>
+                        <Button color={secondaryColor} title="Добавить" onPress={this.addBtnHandler}/>
                     </View>
                     <FlatList data={this.state.charsList} keyExtractor={item => item._id}
                         renderItem={this.charItemRender}
