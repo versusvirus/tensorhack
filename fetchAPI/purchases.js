@@ -5,8 +5,8 @@ export default class PurchasesAPI {
         return await get('purchases', {note_id});
     }
 
-    static async createPurchase(note_id, product_id) {
-        return await post('purchases', {note_id, product_id});
+    static async createPurchase(note_id, category_id, characteristics, count) {
+        return await post('purchases', {note_id, category_id, characteristics, count});
     }
 
     static async deletePurchase(id) {

@@ -100,19 +100,19 @@ class TodoList extends React.Component {
         this.setState({
             open:true
         })
-        /*
+
         let good = {
             name: this.state.newValue,
-            user: 'user1',
-            date: 'data'
+            user: 123,
+            date: new Date()
         }
         notes.createNote(good)
-            .then((good) => {
+            .then(({_id}) => {
                 this.setState({
-                    goods: [...this.state.goods, good],
+                    goods: [...this.state.goods, {_id, ...good}],
                     newValue: ''
                 })
-            });*/
+            });
     }
 
     onRemoveHandler(_id) {
