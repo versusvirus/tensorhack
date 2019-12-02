@@ -8,8 +8,10 @@ const secondaryColor = '#587ab0';
 const successColor = '#069922';
 const dangerColor = '#d04d4d';
 const listHoverColor = '#f0f5fb';
+const unaccentedTextColor = '#999';
 const fontSizeText = 18;
 const fontSizeHeading = 24;
+const fontSizeUnnaccented = 14;
 const textPaddingHorizontal = 16;
 
 const commonStyles = StyleSheet.create({
@@ -83,6 +85,60 @@ const commonStyles = StyleSheet.create({
     },
     swipeDeleteBtnText: {
         color: '#fff',
+    },
+    characteristics: {
+        paddingHorizontal: textPaddingHorizontal
+    },
+    characteristicsItem: {
+        paddingVertical: 18
+    },
+    characteristicsName: {
+        fontSize: fontSizeText
+    },
+    purchaseItem: {
+        display: 'flex',
+        flexDirection: 'row',
+        paddingLeft: 24,
+        marginBottom: 32
+    },
+    purchaseItemName: {
+        fontSize: fontSizeText
+    },
+    purchaseImage: {
+        width: 64,
+        height: 64,
+        backgroundColor: '#ccc'
+    },
+    purchaseDescription: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        paddingLeft: 12
+    },
+    purchaseCharacteristics: {
+        color: '#ccc',
+        fontSize: fontSizeText
+    },
+    purchasePrice: {
+        fontSize: 16,
+        marginRight: 12
+    },
+    purchaseStockPrice: {
+        fontSize: fontSizeUnnaccented,
+        color: dangerColor,
+        textDecorationLine: 'line-through',
+        marginRight: 24
+    },
+    purchaseCount: {
+        flexGrow: 1,
+        fontSize: fontSizeUnnaccented,
+        color: unaccentedTextColor,
+        textAlign: 'right'
+    },
+    purchaseInfo: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'baseline'
     }
 });
 

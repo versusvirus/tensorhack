@@ -50,7 +50,7 @@ class Notes extends React.Component {
         };
 
         let changedData = this.state.data;
-        notes.createNote(newItem).then((_id) => {
+        notes.createNote(newItem).then(({_id}) => {
             const item = {
                 _id,
                 name: this.state.addText

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList, TouchableHighlight } from 'react-native';
+import { View, Text, Button, FlatList, TouchableHighlight, Image } from 'react-native';
 import { purchases } from 'tensorhackfetchapi';
 import { commonStyles, primaryColor, secondaryColor, listHoverColor } from './commonStyles';
 
@@ -54,8 +54,17 @@ class Purchases extends React.Component {
 
     itemRender = ({item}) => {
         return (
-            <View style={commonStyles.hierarchyPadding}>
-                <Text style={commonStyles.listItem}>{item.name}</Text>
+            <View style={commonStyles.purchaseItem}>
+                <Image source={{uri: item.logo}} style={commonStyles.purchaseImage} />
+                <View style={commonStyles.purchaseDescription}>
+                    <View><Text style={commonStyles.purchaseItemName}>{item.name}</Text></View>
+                    <View><Text style={commonStyles.purchaseCharacteristics}>{(item.characteristics || [{ value: ' ' }]).map(item => item.value).join(' * ')}</Text></View>
+                    <View style={commonStyles.purchaseInfo}>
+                        <View><Text style={commonStyles.purchasePrice}>{item.price}</Text></View>
+                        <View><Text style={commonStyles.purchaseStockPrice}>{item.stockprice}</Text></View>
+                        <View style={commonStyles.purchaseCount}><Text>1 шт.</Text></View>
+                    </View>
+                </View>
             </View>
         )
     }
