@@ -24,3 +24,31 @@
 .list-item {
 
 }
+.item-characteristic + .item-characteristic:before{
+    width: 15px;
+    height: auto;
+    text-align:center;
+    padding: 0;
+    content: "•";
+    position: static;
+    display: inline-block;
+    font-size: 10px;
+    color: #848484;
+    cursor: default;
+}
+
+.item-price{
+  font-size:18px;
+  font-weight: 700;
+
+}
+
+.item-stockprice{
+  text-decoration: line-through;
+  color:#b3b3b;
+  margin-left:10px;
+}
+
+.MuiAvatar-img{
+  object-fit: contain!important;  
+}
